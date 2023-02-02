@@ -1,0 +1,338 @@
+SQL_DDL
+
+
+Таблица employees
+
+1.Создать таблицу employees
+- id. serial,  primary key,
+- employee_name. Varchar(50), not null
+
+-----------------------------------------
+
+create table employees(
+id serial primary key,
+employee_name varchar(50) not null
+);
+
+-----------------------------------------
+
+2.Заполнить таблицу employee 70 строками.
+
+-----------------------------------------
+
+insert into employees(employee_name)
+values ('Aidan Joshua Green'),
+('Adrian Ethan Cook'),
+('Alex Hayden Baker'),
+('Brian Tyler Richardson'),
+('Ashton Kevin Peterson'),
+('Sean Dominic Butler'),
+('Carlos Sebastian Harris'),
+('Daniel Cody Morris'),
+('Colin Cole Jenkins'),
+('Cameron Jaden Watson'),
+('Jordan Gavin Richardson'),
+('Jesus Jake Watson'),
+('Angel Aaron Parker'),
+('Nicholas Dominic Taylor'),
+('Justin Charles Thompson'),
+('Isaiah Dylan Rodriguez'),
+('Evan Sean Lee'),
+('Zachary Bryan Baker'),
+('Luke Brian Bryant'),
+('Connor Hayden Cook'),
+('Owen Eric Bailey'),
+('Brian Hunter Foster'),
+('Gavin David Foster'),
+('Joshua Aidan Miller'),
+('Luis Nathan Brooks'),
+('Katelyn Claire Turner'),
+('Zoe Gabriella Sanders'),
+('Amelia Emily White'),
+('Elizabeth Trinity Bell'),
+('Samantha Lily Williams'),
+('Katelyn Sara Allen'),
+('Makayla Riley Garcia'),
+('Kimberly Amelia Foster'),
+('Jocelyn Grace Anderson'),
+('Arianna Madison Evans'),
+('Ashley Jessica Gray'),
+('Jessica Angelina Moore'),
+('Alyssa Lauren Johnson'),
+('Taylor Haley Hughes'),
+('Victoria Brianna Torres'),
+('Cameron Anthony Wright'),
+('Ethan Joseph Davis'),
+('Carter Miguel Wood'),
+('Adam Devin Parker'),
+('Patrick Aidan Griffin'),
+('Austin Gavin Smith'),
+('William Christian Gonzalez'),
+('Isaiah Jake Baker'),
+('Mason Gabriel Robinson'),
+('Ian Mason Robinson'),
+('Landon Brandon Richardson'),
+('Hayden Kyle Robinson'),
+('Richard Diego Sanders'),
+('Lucas Jayden Allen'),
+('Dominic Caleb Jenkins'),
+('Eric Logan Sanders'),
+('Dylan Kyle Bailey'),
+('Logan Juan Lee'),
+('Brian Angel Bryan'),
+('Gavin Luke Sanchez'),
+('Gabriel Jason Patterson'),
+('Nathaniel Cody Robinson'),
+('Jaden Jayden Lopez'),
+('Zachary Jacob Scott'),
+('Bryan Dominic Hall'),
+('Sean Jason Hernandez'),
+('Mason Adam Hayes'),
+('Chase Wyatt Griffin'),
+('Landon Samuel Walker'),
+('Colin Nicholas Alexander');
+
+-----------------------------------
+
+
+Таблица salary
+
+1.Создать таблицу salary
+- id. Serial  primary key,
+- monthly_salary. Int, not null
+
+------------------------------------
+
+create table salary(
+id serial primary key,
+monthly_salary int not null
+);
+
+------------------------------------
+
+2.Наполнить таблицу salary 15 строками:
+- 1000
+- 1100
+- 1200
+- 1300
+- 1400
+- 1500
+- 1600
+- 1700
+- 1800
+- 1900
+- 2000
+- 2100
+- 2200
+- 2300
+- 2400
+- 2500
+
+--------------------------------------
+
+insert into salary(monthly_salary)
+values(1000),
+(1100),
+(1200),
+(1300),
+(1400),
+(1500),
+(1600),
+(1700),
+(1800),
+(1900),
+(2000),
+(2100),
+(2200),
+(2300),
+(2400),
+(2500);
+-----------------------------------------
+Таблица employee_salary
+
+1.Создать таблицу employee_salary
+- id. Serial  primary key,
+- employee_id. Int, not null, unique
+- salary_id. Int, not null
+
+-----------------------------------------
+
+create table employee_salary(
+id serial primary key,
+employee_id int not null unique,
+salary_id int not null
+);
+
+----------------------------------------
+
+2.Наполнить таблицу employee_salary 40 строками
+- в 10 строк из 40 вставить несуществующие employee_id
+
+-----------------------------------------
+
+insert into employee_salary( employee_id, salary_id)
+values(4, 15),
+(3, 2),
+(14, 10),
+(10, 2),
+(9, 16),
+(8, 14),
+(7, 13),
+(6, 12),
+(5, 11),
+(2, 9),
+(1, 1),
+(22, 5),
+(23, 8),
+(24, 7),
+(25, 3),
+(26, 3),
+(27, 4),
+(28, 10),
+(30, 16),
+(29, 1),
+(71, 1),
+(72, 2),
+(73, 3),
+(74, 4),
+(75, 5),
+(76, 6),
+(77, 7),
+(78, 8),
+(79, 9),
+(80, 10),
+(60, 11),
+(70, 12),
+(44, 13),
+(55, 14),
+(66, 15),
+(69, 16),
+(58, 10),
+(57, 1),
+(61, 6),
+(51, 11),
+(49, 3);
+
+------------------------------------
+
+Таблица roles
+
+1.Создать таблицу roles
+- id. Serial  primary key,
+- role_name. int, not null, unique
+
+-------------------------------------
+
+create table roles(
+id serial primary key,
+role_name int not null unique
+);
+
+--------------------------------------
+
+2.Поменять тип столбца role_name с int на varchar(30)
+
+--------------------------------------
+
+alter table roles
+alter column role_name type varchar(30);
+
+--------------------------------------
+
+3.Наполнить таблицу roles 20 строками
+
+--------------------------------------
+
+insert into roles(role_name)
+values('Junior Python developer'),
+('Middle Python developer'),
+('Senior Python developer'),
+('Junior Java developer'),
+('Middle Java developer'),
+('Senior Java developer'),
+('Junior JavaScript developer'),
+('Middle JavaScript developer'),
+('Senior JavaScript developer'),
+('Junior Manual QA engineer'),
+('Middle Manual QA engineer'),
+('Senior Manual QA engineer'),
+('Project Manager'),
+('Designer'),
+('HR'),
+('CEO'),
+('Sales manager'),
+('Junior Automation QA engineer'),
+('Middle Automation QA engineer'),
+('Senior Automation QA engineer');
+
+---------------------------------------------
+
+
+
+
+Таблица roles_employee
+
+1.Создать таблицу roles_employee
+- id. Serial  primary key,
+- employee_id. Int, not null, unique (внешний ключ для таблицы employees, поле id)
+- role_id. Int, not null (внешний ключ для таблицы roles, поле id)
+
+----------------------------------------------
+
+create table roles_employee(
+id serial primary key,
+employee_id int not null unique,
+role_id int not null,
+foreign key(employee_id) references employees(id),
+foreign key(role_id) references roles(id)
+);
+
+----------------------------------------------
+
+2.Наполнить таблицу roles_employee 40 строками
+
+----------------------------------------------
+
+insert into roles_employee(employee_id, role_id)
+values(16, 5),
+(15, 1),
+(13, 2),
+(11, 3),
+(1, 4),
+(2, 5),
+(3, 6),
+(4, 7),
+(5, 8),
+(6, 9),
+(7, 10),
+(8, 11),
+(9, 12),
+(30, 13),
+(28, 14),
+(26, 15),
+(24, 16),
+(22, 17),
+(18, 18),
+(19, 19),
+(31, 20),
+(33, 19),
+(35, 18),
+(37, 18),
+(39, 18),
+(41, 1),
+(43, 2),
+(45, 3),
+(47, 4),
+(49, 5),
+(60, 6),
+(61, 7),
+(62, 20),
+(63, 10),
+(64, 11),
+(65, 14),
+(66, 7),
+(67, 18),
+(68, 6),
+(69, 10),
+(70, 15);
+
